@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>jQuery mask plugin</title>
+    <meta charset=utf8>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="src/jquery.jqMask.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+        $('#passport').jqMask({
+            pattern: '9999 № 999999',
+            placeholder: '____ № ______'
+        });
+
+        $('#phone').jqMask({
+            pattern: '999-999-99-99',
+            placeholder: '___-___-__-__'
+        });
+    });
+    </script>
+
+    <style>
+        div{margin:20px;}
+    </style>
+</head>
+<body>
+    
+    <div>паспорт: <input type="text" id="passport" /></div>
+    
+    <div>телефон: <input type="text" id="phone" /></div>
+
+</body>
+</html>
