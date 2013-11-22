@@ -63,7 +63,7 @@ $.fn.extend({
         // event bindings
         $(this)
         .keypress(function (e) {
-            return _this.onKeyPress(String.fromCharCode(e.keyCode));
+            return _this.onKeyPress(String.fromCharCode(e.keyCode ? e.keyCode : e.which));
         })
         .focus(function (e) {
             if ($(_this).val() == settings.placeholder){
