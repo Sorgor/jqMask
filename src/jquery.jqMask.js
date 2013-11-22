@@ -4,10 +4,13 @@ $.fn.extend({
         
         var _this = this;
 
-        var patterns = {'*': /[a-zA-Z0-9а-яА-ЯёЁ]/,'9': /[0-9]/, ' ': /./, '№': /./, '-': /./},
-            skipped  = [' ', '№', '-'],
+        var patterns = {'*': /[a-zA-Z0-9а-яА-ЯёЁ]/,'9': /[0-9]/},
             settings = $.extend(params, {}),
             pat = settings.pattern.split('');
+
+        settings.skipped.forEach(function(item){
+            patterns[item] = /./
+        });
         
         String.prototype.insert = function (index, string) {
             if (index > 0) return this.substring(0, index) + string + this.substring(index + 1, this.length);
@@ -30,7 +33,7 @@ $.fn.extend({
                 // if not, then check if pressed key mathches any pattern
                 if (key.match(patterns[pat[range.begin]])) {
                     // if pressed key is from skipped, write it and fire keypress event again
-                    if($.inArray(pat[atPosition], skipped) > -1){
+                    if($.inArray(pat[atPosition], settings.skipped) > -1){
                         $(_this).val($(_this).val().insert(range.begin, pat[atPosition]));
                         $(_this).caret(range.begin + 1);
                         _this.onKeyPress(key);
@@ -44,7 +47,7 @@ $.fn.extend({
                 return false;
                 
             } else if (key.match(patterns[pat[atPosition]])) {
-                if($.inArray(pat[atPosition], skipped) > -1){
+                if($.inArray(pat[atPosition], settings.skipped) > -1){
                     $(_this).val($(this).val() + pat[atPosition]);
                     _this.onKeyPress(key);
                 }                

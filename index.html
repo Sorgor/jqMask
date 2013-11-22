@@ -9,12 +9,14 @@
     $(document).ready(function(){
         $('#passport').jqMask({
             pattern: '9999 № 999999',
-            placeholder: '____ № ______'
+            placeholder: '____ № ______',
+            skipped: [' ', '№']
         });
 
         $('#phone').jqMask({
             pattern: '999-999-99-99',
-            placeholder: '___-___-__-__'
+            placeholder: '___-___-__-__',
+            skipped: ['-']
         });
     });
     </script>
