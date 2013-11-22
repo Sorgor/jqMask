@@ -56,6 +56,7 @@
   pattern: 
     9 - any digit symbol
     * - any digit symbol or char
+
 </pre>
 
 
@@ -63,7 +64,8 @@
 
 <pre><code>$('#passport').jqMask({
   pattern: '9999 № 999999',
-  placeholder: '____ № ______'
+  placeholder: '____ № ______',
+  skipped: [' ', '№']
 });
 </code></pre>
 
